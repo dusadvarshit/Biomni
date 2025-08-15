@@ -89,11 +89,19 @@ def get_llm(
             temperature=temperature,
         )
     elif source == "Anthropic":
+        from langchain_core.rate_limiters import InMemoryRateLimiter
+
+        rate_limiter = InMemoryRateLimiter(
+            requests_per_second=0.1,  # <-- Super slow! We can only make a request once every 10 seconds!!
+            check_every_n_seconds=0.1,  # Wake up every 100 ms to check whether allowed to make a request,
+            max_bucket_size=10,  # Controls the maximum burst size.
+        )
         return ChatAnthropic(
             model=model,
             temperature=temperature,
             max_tokens=8192,
             stop_sequences=stop_sequences,
+            rate_limiter=rate_limiter
         )
     elif source == "Gemini":
         # If you want to use ChatGoogleGenerativeAI, you need to pass the stop sequences upon invoking the model.

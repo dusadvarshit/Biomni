@@ -222,3 +222,9 @@ data/ddinter_raw/
 
 # VSCode
 /.vscode
+
+# Tutorial folder and other custom files
+tutorials/biomni_data_test/*
+learn.md 
+tutorials/log.txt
+biomni_env/setup_path.sh

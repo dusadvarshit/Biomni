@@ -14,7 +14,7 @@ dependencies:
   - mafft
   - gseapy
   - mageck
-  - plannotate
+  #- plannotate
   - pip:
     - scanpy
     - biopython
